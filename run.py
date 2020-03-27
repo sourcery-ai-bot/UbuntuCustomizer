@@ -12,13 +12,13 @@ class UbuntuCustomizer(object):
     def customize(self):
         #self.update_system()
         #self.upgrade_system()
-        #self.install_from_ubuntu_software()
+        self.install_from_ubuntu_software()
         #self.install_from_pip3()
         #self.install_chrome()
         #self.install_vscode()
         #self.install_nodejs()
         #self.install_yarn()
-        self.install_quasar()
+        #self.install_quasar()
 
     def install_yarn(self):
         self.execute_command("curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -")
@@ -85,6 +85,8 @@ class UbuntuCustomizer(object):
         self.apt_install("telegram-desktop")
         self.apt_install("python3-pip")
         self.apt_install("npm")
+        self.apt_install("gnome-shell-pomodoro")
+        self.apt_install("libreoffice")
         
 
 
