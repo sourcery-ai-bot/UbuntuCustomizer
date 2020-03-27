@@ -9,13 +9,29 @@ class UbuntuCustomizer(object):
         self.home_dir = "/".join(os.path.realpath(__file__).split('/')[:3])
         self.bashrc_path = f'{self.home_dir}/.bashrc'
 
-    def install(self):
+    def customize(self):
+        #self.update_system()
+        #self.upgrade_system()
+        #self.install_from_ubuntu_software()
+        #self.install_from_pip3()
+        #self.install_chrome()
+        #self.install_vscode()
+        #self.install_nodejs()
+        #self.install_yarn()
+        self.install_quasar()
+
+    def install_yarn(self):
+        self.execute_command("curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -")
+        self.execute_command("echo \"deb https://dl.yarnpkg.com/debian/ stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list")
         self.update_system()
-        self.upgrade_system()
-        self.install_from_ubuntu_software()
-        self.install_from_pip3()
-        self.install_chrome()
-        self.install_vscode()
+        self.apt_install("yarn")
+
+    def install_quasar(self):
+        self.execute_command("npm install -g @quasar/cli")
+	
+    def install_nodejs(self):
+        self.execute_command("curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -")
+        self.apt_install("nodejs")
 
     def install_from_pip3(self):
         self.install_virtualenvwrapper()
@@ -35,7 +51,7 @@ class UbuntuCustomizer(object):
         subprocess.run(["apt-get", "update"])
 
     def upgrade_system(self):
-        subprocess.run(["apt-get", "upgrade"])
+        subprocess.run(["apt-get", "upgrade", "-y"])
 
     def apt_install(self, package_name):
         subprocess.run(["apt-get", "install", package_name, "-y"])
@@ -68,7 +84,9 @@ class UbuntuCustomizer(object):
         self.apt_install("keepassx")
         self.apt_install("telegram-desktop")
         self.apt_install("python3-pip")
+        self.apt_install("npm")
+        
 
 
 if __name__ == "__main__":
-    UbuntuCustomizer().install()
+    UbuntuCustomizer().customize()
