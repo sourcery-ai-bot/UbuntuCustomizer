@@ -10,15 +10,21 @@ class UbuntuCustomizer(object):
         self.bashrc_path = f'{self.home_dir}/.bashrc'
 
     def customize(self):
-        #self.update_system()
-        #self.upgrade_system()
+        self.update_system()
+        self.upgrade_system()
         self.install_from_ubuntu_software()
-        #self.install_from_pip3()
-        #self.install_chrome()
-        #self.install_vscode()
-        #self.install_nodejs()
-        #self.install_yarn()
-        #self.install_quasar()
+        self.install_from_pip3()
+        self.install_chrome()
+        self.install_vscode()
+        self.install_nodejs()
+        self.install_yarn()
+        self.install_quasar()
+        self.install_unetbootin()
+
+    def install_unetbootin(self):
+        self.execute_command("sudo add-apt-repository ppa:gezakovacs/ppa")
+        self.update_system()
+        self.apt_install("unetbootin")
 
     def install_yarn(self):
         self.execute_command("curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -")
