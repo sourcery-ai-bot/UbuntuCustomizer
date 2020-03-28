@@ -157,90 +157,113 @@
 </div>
 <div class="section" id="module-customizer.start">
 <span id="customizer-start-module"></span><h2>customizer.start module<a class="headerlink" href="#module-customizer.start" title="Permalink to this headline">¶</a></h2>
+<p>Ubuntu Customizer.</p>
+<p>This module demonstrates how to automatically configure Ubuntu via Python script.
+Usage:</p>
+<blockquote>
+<div><p>$ sudo python start.py</p>
+</div></blockquote>
 <dl class="class">
 <dt id="customizer.start.UbuntuCustomizer">
 <em class="property">class </em><code class="sig-prename descclassname">customizer.start.</code><code class="sig-name descname">UbuntuCustomizer</code><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A script to  automatically configure Ubuntu.</p>
+<p>A class to automatically configure Ubuntu.</p>
+<p>It needs sudo-mode for configure correctly.</p>
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.apt_install">
 <code class="sig-name descname">apt_install</code><span class="sig-paren">(</span><em class="sig-param">package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.apt_install"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.apt_install" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install from apt.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.customize">
 <code class="sig-name descname">customize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.customize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.customize" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Main method, which do all work.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.execute_command">
 <code class="sig-name descname">execute_command</code><span class="sig-paren">(</span><em class="sig-param">command</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.execute_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.execute_command" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Execute shell command.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.install_chrome">
 <code class="sig-name descname">install_chrome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_chrome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_chrome" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="customizer.start.UbuntuCustomizer.install_from_pip3">
-<code class="sig-name descname">install_from_pip3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_from_pip3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_from_pip3" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install Google Chrome.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.install_from_ubuntu_software">
 <code class="sig-name descname">install_from_ubuntu_software</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_from_ubuntu_software"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_from_ubuntu_software" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install apps from apt.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.install_nodejs">
 <code class="sig-name descname">install_nodejs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_nodejs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_nodejs" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install NodeJS.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="customizer.start.UbuntuCustomizer.install_python_helpers">
+<code class="sig-name descname">install_python_helpers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_python_helpers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_python_helpers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add helpers for python.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.install_quasar">
 <code class="sig-name descname">install_quasar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_quasar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_quasar" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install Quasar Framework.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.install_unetbootin">
 <code class="sig-name descname">install_unetbootin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_unetbootin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_unetbootin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install unetbootin for creating disk images.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.install_virtualenvwrapper">
 <code class="sig-name descname">install_virtualenvwrapper</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_virtualenvwrapper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_virtualenvwrapper" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install virtualenvwrapper.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.install_vscode">
 <code class="sig-name descname">install_vscode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_vscode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_vscode" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install VS code text editor.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.install_yarn">
 <code class="sig-name descname">install_yarn</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.install_yarn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.install_yarn" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install yarn.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.pip3_install">
 <code class="sig-name descname">pip3_install</code><span class="sig-paren">(</span><em class="sig-param">package_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.pip3_install"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.pip3_install" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Install from pip3.</p>
+</dd></dl>
 
 <dl class="method">
-<dt id="customizer.start.UbuntuCustomizer.set_other_settings">
-<code class="sig-name descname">set_other_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.set_other_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.set_other_settings" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="customizer.start.UbuntuCustomizer.set_git_settings">
+<code class="sig-name descname">set_git_settings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.set_git_settings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.set_git_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Configure git.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.update_system">
 <code class="sig-name descname">update_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.update_system"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.update_system" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Update Ubuntu.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="customizer.start.UbuntuCustomizer.upgrade_system">
 <code class="sig-name descname">upgrade_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/customizer/start.html#UbuntuCustomizer.upgrade_system"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#customizer.start.UbuntuCustomizer.upgrade_system" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Upgrade Ubuntu.</p>
+</dd></dl>
 
 </dd></dl>
 

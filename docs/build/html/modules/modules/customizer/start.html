@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>customizer.start &mdash; Ubuntu Customizer 1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Ubuntu Customizer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ubuntu Customizer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>customizer.start</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for customizer.start</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Ubuntu Customizer.</span>
+
+<span class="sd">This module demonstrates how to automatically configure Ubuntu via Python script.</span>
+<span class="sd">Usage:</span>
+<span class="sd">    $ sudo python start.py</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+
+<div class="viewcode-block" id="UbuntuCustomizer"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer">[docs]</a><span class="k">class</span> <span class="nc">UbuntuCustomizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A class to automatically configure Ubuntu.</span>
+
+<span class="sd">    It needs sudo-mode for configure correctly.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Detect home directory and system files.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">home_dir</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bashrc_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">home_dir</span><span class="si">}</span><span class="s1">/.bashrc&#39;</span>
+
+<div class="viewcode-block" id="UbuntuCustomizer.customize"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.customize">[docs]</a>    <span class="k">def</span> <span class="nf">customize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Main method, which do all work.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_system</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upgrade_system</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_from_ubuntu_software</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_from_pip3</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_chrome</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_vscode</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_nodejs</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_yarn</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_quasar</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_unetbootin</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_git_settings</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.set_git_settings"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.set_git_settings">[docs]</a>    <span class="k">def</span> <span class="nf">set_git_settings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Configure git.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;git config --global user.email </span><span class="se">\&quot;</span><span class="s2">6pirule@gmail.com</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_python_helpers"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_python_helpers">[docs]</a>    <span class="k">def</span> <span class="nf">install_python_helpers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add helpers for python.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pip3_install</span><span class="p">(</span><span class="s2">&quot;pep8&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">install_virtualenvwrapper</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_unetbootin"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_unetbootin">[docs]</a>    <span class="k">def</span> <span class="nf">install_unetbootin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install unetbootin for creating disk images.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span><span class="s2">&quot;sudo add-apt-repository ppa:gezakovacs/ppa&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_system</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apt_install</span><span class="p">(</span><span class="s2">&quot;unetbootin&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_yarn"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_yarn">[docs]</a>    <span class="k">def</span> <span class="nf">install_yarn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install yarn.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;echo </span><span class="se">\&quot;</span><span class="s2">deb https://dl.yarnpkg.com/debian/ stable main</span><span class="se">\&quot;</span><span class="s2"> | sudo tee /etc/apt/sources.list.d/yarn.list&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_system</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apt_install</span><span class="p">(</span><span class="s2">&quot;yarn&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_quasar"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_quasar">[docs]</a>    <span class="k">def</span> <span class="nf">install_quasar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install Quasar Framework.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span><span class="s2">&quot;npm install -g @quasar/cli&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_nodejs"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_nodejs">[docs]</a>    <span class="k">def</span> <span class="nf">install_nodejs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install NodeJS.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apt_install</span><span class="p">(</span><span class="s2">&quot;nodejs&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_virtualenvwrapper"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_virtualenvwrapper">[docs]</a>    <span class="k">def</span> <span class="nf">install_virtualenvwrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install virtualenvwrapper.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pip3_install</span><span class="p">(</span><span class="s2">&quot;virtualenv&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pip3_install</span><span class="p">(</span><span class="s2">&quot;virtualenvwrapper&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;echo </span><span class="se">\&quot;</span><span class="s2">export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3</span><span class="se">\&quot;</span><span class="s2"> &gt;&gt; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bashrc_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;echo </span><span class="se">\&quot;</span><span class="s2">source /usr/local/bin/virtualenvwrapper.sh</span><span class="se">\&quot;</span><span class="s2"> &gt;&gt; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bashrc_path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.execute_command"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.execute_command">[docs]</a>    <span class="k">def</span> <span class="nf">execute_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">command</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Execute shell command.&quot;&quot;&quot;</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.update_system"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.update_system">[docs]</a>    <span class="k">def</span> <span class="nf">update_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update Ubuntu.&quot;&quot;&quot;</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;apt-get&quot;</span><span class="p">,</span> <span class="s2">&quot;update&quot;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.upgrade_system"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.upgrade_system">[docs]</a>    <span class="k">def</span> <span class="nf">upgrade_system</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Upgrade Ubuntu.&quot;&quot;&quot;</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;apt-get&quot;</span><span class="p">,</span> <span class="s2">&quot;upgrade&quot;</span><span class="p">,</span> <span class="s2">&quot;-y&quot;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.apt_install"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.apt_install">[docs]</a>    <span class="k">def</span> <span class="nf">apt_install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install from apt.&quot;&quot;&quot;</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;apt-get&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">,</span> <span class="s2">&quot;-y&quot;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.pip3_install"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.pip3_install">[docs]</a>    <span class="k">def</span> <span class="nf">pip3_install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">package_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install from pip3.&quot;&quot;&quot;</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">&quot;pip3&quot;</span><span class="p">,</span> <span class="s2">&quot;install&quot;</span><span class="p">,</span> <span class="n">package_name</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_chrome"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_chrome">[docs]</a>    <span class="k">def</span> <span class="nf">install_chrome</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install Google Chrome.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - &quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;sudo sh -c &#39;echo </span><span class="se">\&quot;</span><span class="s2">deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main</span><span class="se">\&quot;</span><span class="s2"> &gt;&gt; /etc/apt/sources.list.d/google.list&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_system</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apt_install</span><span class="p">(</span><span class="s2">&quot;google-chrome-stable&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_vscode"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_vscode">[docs]</a>    <span class="k">def</span> <span class="nf">install_vscode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install VS code text editor.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; microsoft.gpg&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft-archive-keyring.gpg&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute_command</span><span class="p">(</span>
+            <span class="s2">&quot;sudo sh -c &#39;echo </span><span class="se">\&quot;</span><span class="s2">deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main</span><span class="se">\&quot;</span><span class="s2"> &gt; /etc/apt/sources.list.d/vscode.list&#39;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apt_install</span><span class="p">(</span><span class="s2">&quot;apt-transport-https&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_system</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apt_install</span><span class="p">(</span><span class="s2">&quot;code&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UbuntuCustomizer.install_from_ubuntu_software"><a class="viewcode-back" href="../../customizer.html#customizer.start.UbuntuCustomizer.install_from_ubuntu_software">[docs]</a>    <span class="k">def</span> <span class="nf">install_from_ubuntu_software</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Install apps from apt.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">app_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;curl&quot;</span><span class="p">,</span> <span class="s2">&quot;git&quot;</span><span class="p">,</span> <span class="s2">&quot;keepassx&quot;</span><span class="p">,</span> <span class="s2">&quot;telegram-desktop&quot;</span><span class="p">,</span> <span class="s2">&quot;python3-pip&quot;</span><span class="p">,</span> <span class="s2">&quot;npm&quot;</span><span class="p">,</span> <span class="s2">&quot;gnome-shell-pomodoro&quot;</span><span class="p">,</span> <span class="s2">&quot;libreoffice&quot;</span><span class="p">,</span> <span class="s2">&quot;python-pip&quot;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">apt_install</span><span class="p">(</span><span class="n">app_name</span><span class="p">)</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">UbuntuCustomizer</span><span class="p">()</span><span class="o">.</span><span class="n">customize</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Dmitry Naumenko
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

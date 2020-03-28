@@ -1,16 +1,27 @@
+"""Ubuntu Customizer.
+
+This module demonstrates how to automatically configure Ubuntu via Python script.
+Usage:
+    $ sudo python start.py
+"""
+
 import os
 import subprocess
 
 
 class UbuntuCustomizer(object):
-    """A script to  automatically configure Ubuntu.
+    """A class to automatically configure Ubuntu.
+
+    It needs sudo-mode for configure correctly.
     """
 
     def __init__(self):
+        """Detect home directory and system files."""
         self.home_dir = "/".join(os.path.realpath(__file__).split('/')[:3])
         self.bashrc_path = f'{self.home_dir}/.bashrc'
 
     def customize(self):
+        """Main method, which do all work."""
         self.update_system()
         self.upgrade_system()
         self.install_from_ubuntu_software()
@@ -21,19 +32,26 @@ class UbuntuCustomizer(object):
         self.install_yarn()
         self.install_quasar()
         self.install_unetbootin()
-        self.set_other_settings()
+        self.set_git_settings()
 
-    def set_other_settings(self):
+    def set_git_settings(self):
+        """Configure git."""
         self.execute_command(
             "git config --global user.email \"6pirule@gmail.com\"")
-        self.execute_command("pip3 install pep8")
+
+    def install_python_helpers(self):
+        """Add helpers for python."""
+        self.pip3_install("pep8")
+        self.install_virtualenvwrapper()
 
     def install_unetbootin(self):
+        """Install unetbootin for creating disk images."""
         self.execute_command("sudo add-apt-repository ppa:gezakovacs/ppa")
         self.update_system()
         self.apt_install("unetbootin")
 
     def install_yarn(self):
+        """Install yarn."""
         self.execute_command(
             "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -")
         self.execute_command(
@@ -42,17 +60,17 @@ class UbuntuCustomizer(object):
         self.apt_install("yarn")
 
     def install_quasar(self):
+        """Install Quasar Framework."""
         self.execute_command("npm install -g @quasar/cli")
 
     def install_nodejs(self):
+        """Install NodeJS."""
         self.execute_command(
             "curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -")
         self.apt_install("nodejs")
 
-    def install_from_pip3(self):
-        self.install_virtualenvwrapper()
-
     def install_virtualenvwrapper(self):
+        """Install virtualenvwrapper."""
         self.pip3_install("virtualenv")
         self.pip3_install("virtualenvwrapper")
         self.execute_command(
@@ -61,21 +79,27 @@ class UbuntuCustomizer(object):
             "echo \"source /usr/local/bin/virtualenvwrapper.sh\" >> " + self.bashrc_path)
 
     def execute_command(self, command):
+        """Execute shell command."""
         subprocess.run(command, shell=True)
 
     def update_system(self):
+        """Update Ubuntu."""
         subprocess.run(["apt-get", "update"])
 
     def upgrade_system(self):
+        """Upgrade Ubuntu."""
         subprocess.run(["apt-get", "upgrade", "-y"])
 
     def apt_install(self, package_name):
+        """Install from apt."""
         subprocess.run(["apt-get", "install", package_name, "-y"])
 
     def pip3_install(self, package_name):
+        """Install from pip3."""
         subprocess.run(["pip3", "install", package_name])
 
     def install_chrome(self):
+        """Install Google Chrome."""
         self.execute_command(
             "wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ")
         self.execute_command(
@@ -84,6 +108,7 @@ class UbuntuCustomizer(object):
         self.apt_install("google-chrome-stable")
 
     def install_vscode(self):
+        """Install VS code text editor."""
         self.execute_command(
             "curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg")
         self.execute_command(
@@ -95,15 +120,9 @@ class UbuntuCustomizer(object):
         self.apt_install("code")
 
     def install_from_ubuntu_software(self):
-        self.apt_install("curl")
-        self.apt_install("git")
-        self.apt_install("keepassx")
-        self.apt_install("telegram-desktop")
-        self.apt_install("python3-pip")
-        self.apt_install("npm")
-        self.apt_install("gnome-shell-pomodoro")
-        self.apt_install("libreoffice")
-        self.apt_install("python-pip")
+        """Install apps from apt."""
+        for app_name in ["curl", "git", "keepassx", "telegram-desktop", "python3-pip", "npm", "gnome-shell-pomodoro", "libreoffice", "python-pip"]:
+            self.apt_install(app_name)
 
 
 if __name__ == "__main__":
