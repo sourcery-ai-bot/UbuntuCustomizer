@@ -24,6 +24,7 @@ class UbuntuCustomizer(object):
 
     def set_other_settings(self):
         self.execute_command("git config --global user.email \"6pirule@gmail.com\"")
+        self.execute_command("pip3 install pep8")
 
     def install_unetbootin(self):
         self.execute_command("sudo add-apt-repository ppa:gezakovacs/ppa")
@@ -97,6 +98,7 @@ class UbuntuCustomizer(object):
         self.apt_install("npm")
         self.apt_install("gnome-shell-pomodoro")
         self.apt_install("libreoffice")
+        self.apt_install("python-pip")
         
 
 
