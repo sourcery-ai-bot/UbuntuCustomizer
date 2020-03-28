@@ -20,6 +20,10 @@ class UbuntuCustomizer(object):
         self.install_yarn()
         self.install_quasar()
         self.install_unetbootin()
+        self.set_other_settings()
+
+    def set_other_settings(self):
+        self.execute_command("git config --global user.email \"6pirule@gmail.com\"")
 
     def install_unetbootin(self):
         self.execute_command("sudo add-apt-repository ppa:gezakovacs/ppa")
