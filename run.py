@@ -1,5 +1,4 @@
 import os
-from pathlib import Path
 import subprocess
 
 
@@ -23,7 +22,8 @@ class UbuntuCustomizer(object):
         self.set_other_settings()
 
     def set_other_settings(self):
-        self.execute_command("git config --global user.email \"6pirule@gmail.com\"")
+        self.execute_command(
+            "git config --global user.email \"6pirule@gmail.com\"")
         self.execute_command("pip3 install pep8")
 
     def install_unetbootin(self):
@@ -32,16 +32,19 @@ class UbuntuCustomizer(object):
         self.apt_install("unetbootin")
 
     def install_yarn(self):
-        self.execute_command("curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -")
-        self.execute_command("echo \"deb https://dl.yarnpkg.com/debian/ stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list")
+        self.execute_command(
+            "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -")
+        self.execute_command(
+            "echo \"deb https://dl.yarnpkg.com/debian/ stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list")
         self.update_system()
         self.apt_install("yarn")
 
     def install_quasar(self):
         self.execute_command("npm install -g @quasar/cli")
-	
+
     def install_nodejs(self):
-        self.execute_command("curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -")
+        self.execute_command(
+            "curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -")
         self.apt_install("nodejs")
 
     def install_from_pip3(self):
@@ -51,9 +54,9 @@ class UbuntuCustomizer(object):
         self.pip3_install("virtualenv")
         self.pip3_install("virtualenvwrapper")
         self.execute_command(
-            "echo \"export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3\" >> "+self.bashrc_path)
+            "echo \"export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3\" >> " + self.bashrc_path)
         self.execute_command(
-            "echo \"source /usr/local/bin/virtualenvwrapper.sh\" >> "+self.bashrc_path)
+            "echo \"source /usr/local/bin/virtualenvwrapper.sh\" >> " + self.bashrc_path)
 
     def execute_command(self, command):
         subprocess.run(command, shell=True)
@@ -99,7 +102,6 @@ class UbuntuCustomizer(object):
         self.apt_install("gnome-shell-pomodoro")
         self.apt_install("libreoffice")
         self.apt_install("python-pip")
-        
 
 
 if __name__ == "__main__":
