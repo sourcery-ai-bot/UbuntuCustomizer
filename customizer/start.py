@@ -3,6 +3,8 @@ import subprocess
 
 
 class UbuntuCustomizer(object):
+    """A script to  automatically configure Ubuntu.
+    """
 
     def __init__(self):
         self.home_dir = "/".join(os.path.realpath(__file__).split('/')[:3])
