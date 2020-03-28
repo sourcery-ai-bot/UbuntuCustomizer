@@ -7,7 +7,7 @@ https://medium.com/@dmitrynaumenko/my-script-to-configure-ubuntu-via-python-696d
 ### Installing
 
 ```
-sudo python3 run.py
+sudo python3 start.py
 ```
 
 Tested on Ubuntu 19.10
