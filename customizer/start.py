@@ -22,7 +22,7 @@ class UbuntuCustomizer(object):
 
     def customize(self):
         """Main method, which do all work."""
-        self.update_system()
+        self.update_apt()
         self.upgrade_system()
         self.install_from_ubuntu_software()
         self.install_from_pip3()
@@ -32,7 +32,15 @@ class UbuntuCustomizer(object):
         self.install_yarn()
         self.install_quasar()
         self.install_unetbootin()
+        self.install_omnidb()
         self.set_git_settings()
+
+    def install_omnidb(self):
+        self.execute_command(
+            "echo \"deb https://dl.bintray.com/wind39/omnidb-deb debian main\" > /etc/apt/sources.list.d/omnidb.list")
+        self.execute_command("apt-key adv --recv-keys 379CE192D401AB61")
+        self.update_apt()
+        self.apt_install("omnidb-app")
 
     def set_git_settings(self):
         """Configure git."""
@@ -47,7 +55,7 @@ class UbuntuCustomizer(object):
     def install_unetbootin(self):
         """Install unetbootin for creating disk images."""
         self.execute_command("sudo add-apt-repository ppa:gezakovacs/ppa")
-        self.update_system()
+        self.update_apt()
         self.apt_install("unetbootin")
 
     def install_yarn(self):
@@ -56,7 +64,7 @@ class UbuntuCustomizer(object):
             "curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -")
         self.execute_command(
             "echo \"deb https://dl.yarnpkg.com/debian/ stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list")
-        self.update_system()
+        self.update_apt()
         self.apt_install("yarn")
 
     def install_quasar(self):
@@ -82,7 +90,7 @@ class UbuntuCustomizer(object):
         """Execute shell command."""
         subprocess.run(command, shell=True)
 
-    def update_system(self):
+    def update_apt(self):
         """Update Ubuntu."""
         subprocess.run(["apt-get", "update"])
 
@@ -104,7 +112,7 @@ class UbuntuCustomizer(object):
             "wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - ")
         self.execute_command(
             "sudo sh -c 'echo \"deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main\" >> /etc/apt/sources.list.d/google.list'")
-        self.update_system()
+        self.update_apt()
         self.apt_install("google-chrome-stable")
 
     def install_vscode(self):
@@ -115,13 +123,12 @@ class UbuntuCustomizer(object):
             "sudo install -o root -g root -m 644 microsoft.gpg /usr/share/keyrings/microsoft-archive-keyring.gpg")
         self.execute_command(
             "sudo sh -c 'echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main\" > /etc/apt/sources.list.d/vscode.list'")
-        self.apt_install("apt-transport-https")
-        self.update_system()
+        self.update_apt()
         self.apt_install("code")
 
     def install_from_ubuntu_software(self):
         """Install apps from apt."""
-        for app_name in ["curl", "git", "keepassx", "telegram-desktop", "python3-pip", "npm", "gnome-shell-pomodoro", "libreoffice", "python-pip"]:
+        for app_name in ["apt-transport-https", "dirmngr", "curl", "git", "keepassx", "telegram-desktop", "python3-pip", "npm", "gnome-shell-pomodoro", "libreoffice", "python-pip"]:
             self.apt_install(app_name)
 
 
