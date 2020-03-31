@@ -128,7 +128,7 @@ class UbuntuCustomizer(object):
 
     def install_from_ubuntu_software(self):
         """Install apps from apt."""
-        for app_name in ["apt-transport-https", "dirmngr", "curl", "git", "keepassx", "telegram-desktop", "python3-pip", "npm", "gnome-shell-pomodoro", "libreoffice", "python-pip"]:
+        for app_name in ["apt-transport-https", "dirmngr", "curl", "git", "keepassx", "telegram-desktop", "simplescreenrecorder", "python3-pip", "npm", "gnome-shell-pomodoro", "libreoffice", "python-pip"]:
             self.apt_install(app_name)
 
 
