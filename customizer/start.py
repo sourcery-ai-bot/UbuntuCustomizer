@@ -40,6 +40,8 @@ class UbuntuCustomizer(object):
         self.apt_install("postgresql-common")
         self.execute_command(
             "sudo sh /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh")
+        self.apt_install("postgresql-11")
+        self.apt_install("pgadmin4")
 
     def install_omnidb(self):
         self.execute_command(
