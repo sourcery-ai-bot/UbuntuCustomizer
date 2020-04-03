@@ -33,7 +33,13 @@ class UbuntuCustomizer(object):
         self.install_quasar()
         self.install_unetbootin()
         self.install_omnidb()
+        self.install_pgAdmin()
         self.set_git_settings()
+
+    def install_pgAdmin(self):
+        self.apt_install("postgresql-common")
+        self.execute_command(
+            "sudo sh /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh")
 
     def install_omnidb(self):
         self.execute_command(
@@ -128,7 +134,7 @@ class UbuntuCustomizer(object):
 
     def install_from_ubuntu_software(self):
         """Install apps from apt."""
-        for app_name in ["apt-transport-https", "dirmngr", "curl", "git", "keepassx", "telegram-desktop", "simplescreenrecorder", "python3-pip", "npm", "gnome-shell-pomodoro", "libreoffice", "python-pip"]:
+        for app_name in ["apt-transport-https", "dirmngr", "ca-certificates", "curl", "git", "gnupg", "keepassx", "telegram-desktop", "simplescreenrecorder", "python3-pip", "npm", "gnome-shell-pomodoro", "libreoffice", "python-pip"]:
             self.apt_install(app_name)
 
 
