@@ -12,4 +12,4 @@ Article: https://medium.com/@dmitrynaumenko/my-script-to-configure-ubuntu-via-py
 sudo python3 start.py
 ```
 
-Tested on Ubuntu 19.10, Python 3.7
+Tested on Ubuntu 19.10, 20.04; Python 3.7
